@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const green = {
+            name: "green",
+            age: 20
+        }
+        const blue = {
+            name: "blue",
+            age: 20
+        }
+        const bella = {
+            name: "bella",
+            age: 10
+        }
+
+        function showName() {
+            console.log(this.name);
+        }
+        // 매개변수를 가지는 함수 작성
+        function update(birth, job) {
+            this.birth = birth;
+            this.job = job;
+        }
+        showName(); // 이 때 this는 window를 바라봄
+        // call 메소드는 모든 함수에서 사용할 수 있고, this를 특정한 값으로 지정할 때 사용
+        // 함수 내에서 this값을 전달해주기 위해 사용
+        showName(green); // 이 때 this는 green객체가 됨
+        showName(blue); // 이 때 this는 blue객체가 됨
+        // this의 값을 추가로 업데이트 하고 싶을 때
+        // 지정된 특정 값 다음에 쉼표로 이어서 적어주면 된다!
+        update.call(green, 1998, "teacher");
+        console.log(green);
+        update.apply(blue, [1994, "doctor"]);
+        console.log(blue);
+        // 지정한 this값만을 변경할 수 있는
+        const updateBella = update.bind(bella);
+        updateBella(2009, "student");
+        console.log(bella);
+        
+        const numArr = [3,10,5,21,1,14];
+        const min = Math.min(...numArr);
+        const max = Math.max(...numArr);
+        // call 메소드를 사용하면 일반 매개변수를 받기 때문에 
+        // 원래 스프레드 구문처럼 적어야 한다.
+        const min2 = Math.min.call(null, ...numArr);
+        // apply메소드를 사용하면 매개변수를 원래 배열로 받기 때문에 
+        // 그대로 적어서 사용할 수 있다.
+        const min3 = Math.min.apply(null, numArr);
+
+        mySite = {
+            name: "website",
+            getSite: function() {
+                return this.name;
+            }
+        }
+        mySite.getSite();
+        console.log(mySite.getSite());
+        const getYourSite = mySite.getSite;
+        getYourSite(); // 이 때 this는 윈도우 객체를 바라봄
+        console.log(getYourSite());
+        const getMysite = getYourSite.bind(mySite);
+        console.log(getMysite());
+
+        const user = {
+            name: "mike",
+            showName: function() {
+                console.log(`Hello ${this.name}`);
+            }
+        }
+        user.showName();
+        let fn = user.showName;
+        fn.call(user);
+        fn.apply(user);
+        let boundFn = fn.bind(user);
+        boundFn();
+    </script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 클래스 선언
+        class Person {
+            // 생성자 함수
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+            // 메서드 정의
+            speak() {
+                console.log(`${this.name}: Hello my name is 예삐예삐요`);
+            }
+        }
+        const minni = new Person('minni', 24);
+        console.log(minni);
+        minni.speak();
+
+        class Shape {
+            constructor(width, height, color) {
+                this.width = width;
+                this.height = height;
+                this.color = color;
+            }
+            draw() {
+                console.log('그렸어요');
+            }
+            getArea() {
+                return this.width + this.height;
+            }
+        }
+
+        class Triangle extends Shape {
+            constructor(width, height, color, size) {
+                super(width, height, color);
+                this.size = size;
+            }
+            // 오버라이딩 
+            // 필요한 메서드만 재정의 
+            getArea() {
+                return (this.width * this.height) / 2;
+            }
+            draw() {
+                super.draw();
+                console.log('🔺');
+            }
+        } 
+        const triangle1 = new Triangle(20,20,"blue", "big");
+        console.log(triangle1);
+        console.log(triangle1.getArea());
+        triangle1.draw();
+
+        // instanceof : a instanceof b
+        // a객체가 b클래스를 이용하여 만들었는지 체크
+        // 맞으면 true, 아니면 false 리턴
+        console.log(triangle1 instanceof Triangle);
+        console.log(triangle1 instanceof Shape);
+        console.log(triangle1 instanceof Person);
+    </script>
+</body>
+</html>
