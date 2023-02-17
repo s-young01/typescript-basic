@@ -34,3 +34,16 @@ function addArr(...nums) {
 }
 addArr(1, 2, 3);
 addArr(1, 2, 3, 4, 5, 6, 7);
+function join(name, age) {
+    if (typeof age === "number") {
+        return {
+            name: name,
+            age: age
+        };
+    }
+    else {
+        return "나이는 숫자로 입력하세요.";
+    }
+}
+const green2 = join("green", 30);
+const blue = join("blue", "hi");

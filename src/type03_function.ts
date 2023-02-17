@@ -63,3 +63,24 @@ function addArr(...nums: number[]) {
 }
 addArr(1,2,3);
 addArr(1,2,3,4,5,6,7);
+
+// 함수 오버로드
+// 리턴 되는 타입이 여러 개일 때 선언부까지 작성해야 함
+interface Person {
+    name: string,
+    age: number
+}
+function join(name: string, age: string): string;
+function join(name: string, age: number): Person;
+function join(name: string, age: number | string): Person | string {
+    if(typeof age === "number") {
+        return {
+            name: name,
+            age: age
+        }
+    }else {
+        return "나이는 숫자로 입력하세요.";
+    }
+}
+const green2: Person = join("green", 30);
+const blue: string = join("blue", "hi");

@@ -42,3 +42,16 @@ class Student2 {
 }
 const green = new Student2('green');
 console.log(green.getName());
+const namename = {
+    name1: 'green',
+    age: 22,
+    hobby: '드라마 보기'
+};
+class Cat {
+    constructor(name) {
+        this.name = name;
+    }
+    sound() {
+        return '야옹';
+    }
+}

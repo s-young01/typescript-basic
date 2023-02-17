@@ -75,16 +75,16 @@ interface SingUp {
     password: string
 }
 
-// 클래스 타입 인터페이스 
+// 클래스 타입 선언 interface사용 
 // implements키워드 
 interface IStudent {
     name: string,
     getName(): string
 }
 class Student2 implements IStudent{
-    name: string; // 필드가 무슨 타입인지 생성자 함수 위에 정의 해줘야 한다.
+    name: string; // TS에선 필드가 무슨 타입인지 생성자 함수 위에 정의 해줘야 한다.
     constructor(name: string) {
-        this.name = name;
+        this.name = name; // 필드
     }
     getName(): string {
         return this.name;
@@ -92,3 +92,35 @@ class Student2 implements IStudent{
 }
 const green = new Student2('green');
 console.log(green.getName());
+
+// 같은 이름의 interface를 여러 개 만들 수 있음
+// 기존에 만들어진 interface에 내용을 추가하는 경우에 유용
+interface Name {
+    name1: string,
+    age: number
+}
+interface Name {
+    hobby: string
+}
+const namename: Name = {
+    name1: 'green',
+    age: 22,
+    hobby: '드라마 보기'
+}
+
+// interface 확장
+interface IAnimal {
+    name: string
+}
+interface ICat extends IAnimal {
+    sound(): string
+}
+class Cat implements ICat {
+    name: string;
+    constructor(name: string) {
+        this.name = name;
+    }
+    sound(): string {
+        return '야옹';
+    }
+}
